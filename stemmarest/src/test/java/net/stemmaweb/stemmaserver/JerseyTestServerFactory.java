@@ -3,6 +3,10 @@ package net.stemmaweb.stemmaserver;
 import java.util.Collection;
 import java.util.HashSet;
 
+//import org.glassfish.jersey.client.JerseyClientBuilder;
+//import org.glassfish.jersey.test.spi.TestContainerFactory;
+//import org.glassfish.jersey.test.grizzly.GrizzlyTestContainerFactory;
+//import org.glassfish.jersey.test.JerseyTest;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
@@ -69,7 +73,7 @@ public class JerseyTestServerFactory {
                     return port;
                 }
             }
-
+            
             @Override
             protected ClientFactory getClientFactory() {
                 return clientConfig -> {

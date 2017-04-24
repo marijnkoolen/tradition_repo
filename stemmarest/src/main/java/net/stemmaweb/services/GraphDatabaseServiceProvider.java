@@ -1,7 +1,9 @@
 package net.stemmaweb.services;
 
 
+import java.io.File;
 import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.factory.GraphDatabaseBuilder;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.shell.ShellSettings;
 
@@ -20,13 +22,16 @@ public class GraphDatabaseServiceProvider {
     }
 
     // Connect to a DB at a particular path
-    public GraphDatabaseServiceProvider(String db_location) {
-
+    public GraphDatabaseServiceProvider(File db_location) {
+    
         GraphDatabaseFactory dbFactory = new GraphDatabaseFactory();
-        db = dbFactory.newEmbeddedDatabaseBuilder(db_location)
-                    .setConfig(ShellSettings.remote_shell_enabled, "true")
-                    .setConfig(ShellSettings.remote_shell_port, "1337")
-                    .newGraphDatabase();
+        GraphDatabaseBuilder builder = dbFactory.newEmbeddedDatabaseBuilder(db_location);
+        db = builder
+                // only needed for upgrading to newer neo4j versions
+                //.setConfig("dbms.allow_format_migration", "true")
+                .setConfig(ShellSettings.remote_shell_enabled, "true")
+                .setConfig(ShellSettings.remote_shell_port, "1337")
+                .newGraphDatabase();
     }
 
     // Manage an existing (e.g. test) DB

@@ -28,6 +28,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.neo4j.graphdb.*;
 
+
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.test.framework.JerseyTest;
@@ -50,7 +51,7 @@ public class StemmaTest {
      * grizzly http service
      */
     private JerseyTest jerseyTest;
-
+    
     @Before
     public void setUp() throws Exception {
 
@@ -131,19 +132,23 @@ public class StemmaTest {
                 });
         assertEquals(2, stemmata.size());
 
-        String expected = "digraph \"stemma\" {\n  0 [ class=hypothetical ];  "
+        String firstExpected = "digraph \"stemma\" {\n  0 [ class=hypothetical ];  "
                 + "A [ class=extant ];  B [ class=extant ];  "
                 + "C [ class=extant ]; 0 -> A;  0 -> B;  A -> C; \n}";
+        String secondExpected = "graph \"Semstem 1402333041_0\" {\n  0 [ class=hypothetical ];  "
+                + "A [ class=extant ];  B [ class=extant ];  "
+                + "C [ class=extant ]; 0 -- A;  A -- B;  B -- C; \n}";
         StemmaModel firstStemma = stemmata.get(0);
-        Util.assertStemmasEquivalent(expected, firstStemma.getDot());
+        StemmaModel secondStemma = stemmata.get(1);
+        if (firstStemma.getIdentifier().equals("Semstem 1402333041_0")) {
+            firstStemma = stemmata.get(1);
+            secondStemma = stemmata.get(0);
+        }
+        Util.assertStemmasEquivalent(firstExpected, firstStemma.getDot());
         assertEquals("stemma", firstStemma.getIdentifier());
         assertFalse(firstStemma.getIs_undirected());
 
-        String expected2 = "graph \"Semstem 1402333041_0\" {\n  0 [ class=hypothetical ];  "
-                + "A [ class=extant ];  B [ class=extant ];  "
-                + "C [ class=extant ]; 0 -- A;  A -- B;  B -- C; \n}";
-        StemmaModel secondStemma = stemmata.get(1);
-        Util.assertStemmasEquivalent(expected2, secondStemma.getDot());
+        Util.assertStemmasEquivalent(secondExpected, secondStemma.getDot());
         assertEquals("Semstem 1402333041_0", secondStemma.getIdentifier());
         assertTrue(secondStemma.getIs_undirected());
         assertNull(secondStemma.getFrom_jobid());
