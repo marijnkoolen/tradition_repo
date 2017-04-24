@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import net.stemmaweb.rest.ERelations;
 import net.stemmaweb.services.DatabaseService;
+import net.stemmaweb.services.RankCalculation;
+
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
 import org.neo4j.graphdb.Transaction;
@@ -37,6 +39,7 @@ public class TraditionModel {
     private Boolean is_public;
     private Integer stemweb_jobid;
     private String owner;
+    private Long max_rank;
 
     // Derived from relationships
     private ArrayList<String> witnesses;
@@ -63,6 +66,10 @@ public class TraditionModel {
             if( ownerRel != null ) {
                 setOwner(ownerRel.getStartNode().getProperty("id").toString());
             }
+            
+            // add max rank (rank of is_end node) so maximum reading length can
+            // be derived.
+            setMax_rank();
 
             witnesses = new ArrayList<>();
             DatabaseService.getRelated(node, ERelations.HAS_WITNESS).forEach(
@@ -110,4 +117,12 @@ public class TraditionModel {
     }
     public Integer getStemweb_jobid () { return stemweb_jobid; }
     public void setStemweb_jobid (int stemweb_jobid ) { this.stemweb_jobid = stemweb_jobid; }
+    
+    public Long getMax_rank () {
+        return max_rank;
+    }
+    public void setMax_rank () {
+        RankCalculation rankCalc = new RankCalculation();
+        max_rank = rankCalc.getMax_rank(id);
+    }
 }
