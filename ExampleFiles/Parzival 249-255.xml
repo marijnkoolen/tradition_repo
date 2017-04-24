@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="language" attr.type="string" for="graph" id="dg0"/>
+  <key attr.name="name" attr.type="string" for="graph" id="dg1"/>
+  <key attr.name="public" attr.type="boolean" for="graph" id="dg2"/>
+  <key attr.name="stemmata" attr.type="string" for="graph" id="dg3"/>
+  <key attr.name="stemweb_jobid" attr.type="string" for="graph" id="dg4"/>
+  <key attr.name="user" attr.type="string" for="graph" id="dg5"/>
+  <key attr.name="version" attr.type="string" for="graph" id="dg6"/>
+  <key attr.name="grammar_invalid" attr.type="boolean" for="node" id="dn0"/>
+  <key attr.name="id" attr.type="string" for="node" id="dn1"/>
+  <key attr.name="is_common" attr.type="boolean" for="node" id="dn2"/>
+  <key attr.name="is_end" attr.type="boolean" for="node" id="dn3"/>
+  <key attr.name="is_lacuna" attr.type="boolean" for="node" id="dn4"/>
+  <key attr.name="is_lemma" attr.type="boolean" for="node" id="dn5"/>
+  <key attr.name="is_nonsense" attr.type="boolean" for="node" id="dn6"/>
+  <key attr.name="is_ph" attr.type="boolean" for="node" id="dn7"/>
+  <key attr.name="is_start" attr.type="boolean" for="node" id="dn8"/>
+  <key attr.name="join_next" attr.type="boolean" for="node" id="dn9"/>
+  <key attr.name="join_prior" attr.type="boolean" for="node" id="dn10"/>
+  <key attr.name="language" attr.type="string" for="node" id="dn11"/>
+  <key attr.name="witnesses" attr.type="string" for="node" id="dn12"/>
+  <key attr.name="normal_form" attr.type="string" for="node" id="dn13"/>
+  <key attr.name="rank" attr.type="int" for="node" id="dn14"/>
+  <key attr.name="text" attr.type="string" for="node" id="dn15"/>
+  <key attr.name="a_derivable_from_b" attr.type="boolean" for="edge" id="de0"/>
+  <key attr.name="alters_meaning" attr.type="int" for="edge" id="de1"/>
+  <key attr.name="annotation" attr.type="string" for="edge" id="de2"/>
+  <key attr.name="b_derivable_from_a" attr.type="boolean" for="edge" id="de3"/>
+  <key attr.name="displayform" attr.type="string" for="edge" id="de4"/>
+  <key attr.name="extra" attr.type="boolean" for="edge" id="de5"/>
+  <key attr.name="is_significant" attr.type="string" for="edge" id="de6"/>
+  <key attr.name="non_independent" attr.type="boolean" for="edge" id="de7"/>
+  <key attr.name="reading_a" attr.type="string" for="edge" id="de8"/>
+  <key attr.name="reading_b" attr.type="string" for="edge" id="de9"/>
+  <key attr.name="scope" attr.type="string" for="edge" id="de10"/>
+  <key attr.name="type" attr.type="string" for="edge" id="de11"/>
+  <key attr.name="witness" attr.type="string" for="edge" id="de12"/>
   <graph edgedefault="directed" id="Parzival_249-255" parse.edgeids="canonical" parse.edges="25942" parse.nodeids="canonical" parse.nodes="2326" parse.order="nodesfirst">
     <data key="dg0">Default</data>
     <data key="dg1">Parzival 249-255</data>
