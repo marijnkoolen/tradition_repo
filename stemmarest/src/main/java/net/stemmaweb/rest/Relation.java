@@ -16,7 +16,6 @@ import net.stemmaweb.services.DatabaseService;
 import net.stemmaweb.services.GraphDatabaseServiceProvider;
 import net.stemmaweb.services.ReadingService;
 
-import org.apache.commons.lang.ObjectUtils;
 import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.traversal.Uniqueness;
 

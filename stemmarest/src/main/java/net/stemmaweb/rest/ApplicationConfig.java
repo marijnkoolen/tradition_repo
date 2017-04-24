@@ -6,6 +6,9 @@ import java.util.Set;
 //import javax.annotation.PostConstruct;
 import javax.ws.rs.core.Application;
 
+//import org.glassfish.jersey.server.spi.ContainerLifecycleListener;
+
+
 //import net.stemmaweb.services.DatabaseService;
 
 //import net.stemmaweb.services.GraphDatabaseServiceProvider;
@@ -21,7 +24,7 @@ public class ApplicationConfig extends Application {
     // Get the correct path to the database location
     //private static final String DB_ENV = System.getenv("DATABASE_HOME");
     //private static final String DB_PATH = DB_ENV == null ? "/home/tagaid/stemmarest/neo4jdb" : DB_ENV;
-    private static final String DB_PATH = "/data/tagaid/neo4jdb";
+    //private static final String DB_PATH = "/data/tagaid/neo4jdb";
     
     @Override
     public Set<Class<?>> getClasses() {

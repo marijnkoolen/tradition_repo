@@ -17,9 +17,12 @@ import net.stemmaweb.model.*;
 import net.stemmaweb.parser.DotParser;
 import net.stemmaweb.services.*;
 import net.stemmaweb.services.DatabaseService;
+import net.stemmaweb.services.RankCalculation;
 
 import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.traversal.*;
+//import org.neo4j.helpers.collection.IteratorUtil; // Neo4j 2.x
+import org.neo4j.helpers.collection.Iterators; // Neo4j 3.x
 
 
 /**
@@ -817,6 +820,28 @@ public class Tradition {
 
         TraditionModel metadata = new TraditionModel(traditionNode);
         return Response.ok(metadata).build();
+    }
+    
+    public Long getMax_rank(String traditionId) {
+        Result result;
+        Long max_rank = null;
+        try (Transaction tx = db.beginTx()) {
+            result = db.execute("match (m) where m.tradition_id = \"" + traditionId + "\" and m.is_end=true return m");
+            Iterator<Node> nodes = result.columnAs("m");
+            for (Node node : Iterators.asIterable(nodes)) // neo4j 3.x
+            //for (Node node : IteratorUtil.asIterable(nodes)) // neo4j 2.x
+            {
+                ReadingModel m = new ReadingModel(node);
+                max_rank = m.getRank();
+            }
+            
+            tx.success();
+            
+        } catch (Exception e) {
+            return null;
+        }
+
+        return max_rank;
     }
 
     /**
